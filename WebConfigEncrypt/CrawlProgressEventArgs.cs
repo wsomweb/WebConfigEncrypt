@@ -1,4 +1,4 @@
-﻿// Program.cs
+﻿// CrawlProgressEventHandler.cs
 
 // Copyright (C) 2018 Kinsey Roberts (@kinzdesign), Weatherhead School of Management (@wsomweb)
 
@@ -23,19 +23,27 @@
 // SOFTWARE.
 
 using System;
-using System.Windows.Forms;
 
 namespace edu.cwru.weatherhead.WebConfigEncrypt
 {
-    static class Program
+    public delegate void CrawlProgressEventHandler(object sender, CrawlProgressEventArgs e);
+
+    public class CrawlProgressEventArgs : EventArgs
     {
-        [STAThread]
-        static void Main(params string[] args) 
+        public readonly bool WasCanceled;
+
+        public readonly int DirectoriesProcessed;
+
+        public readonly int FilesProcessed;
+
+        public readonly int SectionsFound;
+
+        internal CrawlProgressEventArgs(bool wasCanceled, int directoriesProcessed, int filesProcessed, int sectionsFound) : base()
         {
-            // launch GUI
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WebConfigEncryptForm());
+            WasCanceled = wasCanceled;
+            DirectoriesProcessed = directoriesProcessed;
+            FilesProcessed = filesProcessed;
+            SectionsFound = sectionsFound;
         }
     }
 }
