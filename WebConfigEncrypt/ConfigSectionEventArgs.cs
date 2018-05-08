@@ -1,4 +1,4 @@
-﻿// Program.cs
+﻿// ConfigSectionEventArgs.cs
 
 // Copyright (C) 2018 Kinsey Roberts (@kinzdesign), Weatherhead School of Management (@wsomweb)
 
@@ -23,19 +23,24 @@
 // SOFTWARE.
 
 using System;
-using System.Windows.Forms;
 
 namespace edu.cwru.weatherhead.WebConfigEncrypt
 {
-    static class Program
+    public delegate void ConfigSectionEventHandler(object sender, ConfigSectionEventArgs e);
+
+    public class ConfigSectionEventArgs : EventArgs
     {
-        [STAThread]
-        static void Main(params string[] args) 
+        public readonly ConfigSection ConfigSection;
+
+
+        internal ConfigSectionEventArgs(string configFilePath, string sectionName, bool isEncrypted) :
+            this(new ConfigSection(configFilePath, sectionName, isEncrypted))
+        { }
+
+        internal ConfigSectionEventArgs(ConfigSection configSection) : base()
         {
-            // launch GUI
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WebConfigEncryptForm());
+            ConfigSection = configSection;
         }
+
     }
 }
