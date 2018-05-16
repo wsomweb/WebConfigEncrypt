@@ -33,18 +33,19 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.configFilePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sectionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isEncryptedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Encryption = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.configSectionListBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelScanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageRSAKeyContainersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configFilePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sectionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isEncryptedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.configSectionListBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configSectionListBindingSource1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.configSectionListBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -83,6 +84,47 @@
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
+            // Encryption
+            // 
+            this.Encryption.DataPropertyName = "ToggleButtonText";
+            this.Encryption.HeaderText = "Toggle Encryption";
+            this.Encryption.Name = "Encryption";
+            this.Encryption.ReadOnly = true;
+            this.Encryption.Width = 150;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cancelScanToolStripMenuItem,
+            this.configureToolStripMenuItem,
+            this.manageRSAKeyContainersToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(818, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // configureToolStripMenuItem
+            // 
+            this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.configureToolStripMenuItem.Text = "C&onfigure";
+            this.configureToolStripMenuItem.Click += new System.EventHandler(this.configureToolStripMenuItem_Click);
+            // 
+            // cancelScanToolStripMenuItem
+            // 
+            this.cancelScanToolStripMenuItem.Name = "cancelScanToolStripMenuItem";
+            this.cancelScanToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.cancelScanToolStripMenuItem.Text = "&Cancel Scan";
+            this.cancelScanToolStripMenuItem.Click += new System.EventHandler(this.cancelScanToolStripMenuItem_Click);
+            // 
+            // manageRSAKeyContainersToolStripMenuItem
+            // 
+            this.manageRSAKeyContainersToolStripMenuItem.Name = "manageRSAKeyContainersToolStripMenuItem";
+            this.manageRSAKeyContainersToolStripMenuItem.Size = new System.Drawing.Size(168, 20);
+            this.manageRSAKeyContainersToolStripMenuItem.Text = "Manage RSA &Key Containers";
+            this.manageRSAKeyContainersToolStripMenuItem.Click += new System.EventHandler(this.manageRSAKeyContainersToolStripMenuItem_Click);
+            // 
             // configFilePathDataGridViewTextBoxColumn
             // 
             this.configFilePathDataGridViewTextBoxColumn.DataPropertyName = "ConfigFilePath";
@@ -109,42 +151,9 @@
             this.isEncryptedDataGridViewCheckBoxColumn.ReadOnly = true;
             this.isEncryptedDataGridViewCheckBoxColumn.Width = 75;
             // 
-            // Encryption
-            // 
-            this.Encryption.DataPropertyName = "ToggleButtonText";
-            this.Encryption.HeaderText = "Toggle Encryption";
-            this.Encryption.Name = "Encryption";
-            this.Encryption.ReadOnly = true;
-            this.Encryption.Width = 150;
-            // 
             // configSectionListBindingSource1
             // 
             this.configSectionListBindingSource1.DataSource = typeof(edu.cwru.weatherhead.WebConfigEncrypt.ConfigSectionList);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.configureToolStripMenuItem,
-            this.cancelScanToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(818, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // configureToolStripMenuItem
-            // 
-            this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
-            this.configureToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.configureToolStripMenuItem.Text = "Configure";
-            this.configureToolStripMenuItem.Click += new System.EventHandler(this.configureToolStripMenuItem_Click);
-            // 
-            // cancelScanToolStripMenuItem
-            // 
-            this.cancelScanToolStripMenuItem.Name = "cancelScanToolStripMenuItem";
-            this.cancelScanToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
-            this.cancelScanToolStripMenuItem.Text = "Cancel Scan";
-            this.cancelScanToolStripMenuItem.Click += new System.EventHandler(this.cancelScanToolStripMenuItem_Click);
             // 
             // WebConfigEncryptForm
             // 
@@ -154,7 +163,6 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "WebConfigEncryptForm";
             this.Text = "Web.config Encrypt/Decrypt";
@@ -162,9 +170,9 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configSectionListBindingSource1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.configSectionListBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,5 +191,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cancelScanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageRSAKeyContainersToolStripMenuItem;
     }
 }

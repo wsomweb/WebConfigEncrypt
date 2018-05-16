@@ -39,6 +39,7 @@ namespace edu.cwru.weatherhead.WebConfigEncrypt
         public WebConfigEncryptForm()
         {
             InitializeComponent();
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             // bind config sections
             _sections = new ConfigSectionList();
             configSectionListBindingSource1.DataSource = _sections;
@@ -146,13 +147,7 @@ namespace edu.cwru.weatherhead.WebConfigEncrypt
             if(e.ColumnIndex == dataGridView1.Columns["Encryption"].Index)
             {
                 // toggle the encryption state
-                string output;
-                bool success = _sections[e.RowIndex].ToggleEncryption(this, out output);
-                // show message box
-                if (success)
-                    MessageBox.Show(this, output, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else if (!String.IsNullOrEmpty(output))
-                    MessageBox.Show(this, output, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _sections[e.RowIndex].ToggleEncryption(this);
             }
         }
 
@@ -178,6 +173,15 @@ namespace edu.cwru.weatherhead.WebConfigEncrypt
             CancelCrawl();
         }
 
+        private void manageRSAKeyContainersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CancelCrawl();
+            KeyContainerForm form = new KeyContainerForm();
+            form.ShowDialog(this);
+            BeginCrawl();
+        }
+
         #endregion
+
     }
 }

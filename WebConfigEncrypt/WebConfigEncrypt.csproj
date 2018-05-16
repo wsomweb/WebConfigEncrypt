@@ -43,6 +43,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -63,6 +64,19 @@
     <Compile Include="ConfigurationForm.Designer.cs">
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CryptoAPI.cs" />
+    <Compile Include="GetStringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GetStringForm.Designer.cs">
+      <DependentUpon>GetStringForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KeyContainerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyContainerForm.Designer.cs">
+      <DependentUpon>KeyContainerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CrawlProgressEventArgs.cs" />
@@ -73,12 +87,6 @@
     <Compile Include="WebConfigEncryptForm.Designer.cs">
       <DependentUpon>WebConfigEncryptForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ChooseKeyProviderForm.resx">
-      <DependentUpon>ChooseKeyProviderForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ConfigurationForm.resx">
-      <DependentUpon>ConfigurationForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -89,9 +97,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="WebConfigEncryptForm.resx">
-      <DependentUpon>WebConfigEncryptForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
@@ -107,7 +112,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="lock.ico" />
