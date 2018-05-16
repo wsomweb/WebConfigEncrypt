@@ -41,6 +41,7 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnKeys = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -52,6 +53,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.txtWebroots);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnLoad);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
@@ -67,7 +69,7 @@
             this.txtWebroots.Multiline = true;
             this.txtWebroots.Name = "txtWebroots";
             this.txtWebroots.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtWebroots.Size = new System.Drawing.Size(313, 501);
+            this.txtWebroots.Size = new System.Drawing.Size(313, 469);
             this.txtWebroots.TabIndex = 1;
             // 
             // label1
@@ -151,10 +153,11 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLoad.Location = new System.Drawing.Point(13, 564);
+            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoad.Location = new System.Drawing.Point(6, 513);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(325, 23);
+            this.btnLoad.Size = new System.Drawing.Size(313, 23);
             this.btnLoad.TabIndex = 3;
             this.btnLoad.Text = "&Load from applicationHost.config";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -182,19 +185,35 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnKeys
+            // 
+            this.btnKeys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnKeys.Location = new System.Drawing.Point(13, 564);
+            this.btnKeys.Name = "btnKeys";
+            this.btnKeys.Size = new System.Drawing.Size(325, 23);
+            this.btnKeys.TabIndex = 6;
+            this.btnKeys.Text = "&Manage RSA Key containers";
+            this.btnKeys.UseVisualStyleBackColor = true;
+            this.btnKeys.Click += new System.EventHandler(this.btnKeys_Click);
+            // 
             // ConfigurationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 599);
+            this.Controls.Add(this.btnKeys);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigurationForm";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -213,5 +232,6 @@
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnKeys;
     }
 }

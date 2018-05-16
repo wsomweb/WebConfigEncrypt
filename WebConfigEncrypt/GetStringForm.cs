@@ -1,4 +1,4 @@
-﻿// ChooseKeyProviderForm.cs
+﻿// GetStringForm.cs
 
 // Copyright (C) 2018 Kinsey Roberts (@kinzdesign), Weatherhead School of Management (@wsomweb)
 
@@ -23,46 +23,29 @@
 // SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace edu.cwru.weatherhead.WebConfigEncrypt
 {
-    public partial class ChooseKeyProviderForm : Form
+    public partial class GetStringForm : Form
     {
-        public ChooseKeyProviderForm(string prompt, IEnumerable<string> providers)
+        public GetStringForm()
         {
             InitializeComponent();
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            // config label text
-            lblPrompt.Text = prompt;
-            // load drop-down
-            foreach (string provider in providers)
-                cbProviders.Items.Add(provider);
         }
 
-
-        public static string GetKeyProvider(IWin32Window window, string configFilePath, string section, IEnumerable<string> providers)
+        public static string Prompt(IWin32Window owner, string title, string prompt, string defaultText = "", string nullVal = "")
         {
-            string prompt = String.Format("Multiple key providers were found in {0}.\r\nPlease choose which provider to use when encrypting {1}.", configFilePath, section);
-            return GetKeyProvider(window, prompt, providers);
-        }
-
-
-        public static string GetKeyProvider(IWin32Window window, string prompt, IEnumerable<string> providers)
-        {
-            // build window
-            var form = new ChooseKeyProviderForm(prompt, providers);
-            // show window
-            if (form.ShowDialog(window) == DialogResult.OK)
-                return form.cbProviders.SelectedItem.ToString();
-            return null;
-        }
-
-        private void cbProviders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // only allow OK button when a provider is selected
-            btnOk.Enabled = !String.IsNullOrEmpty(cbProviders.SelectedItem.ToString());
+            GetStringForm form = new GetStringForm();
+            form.Text = title;
+            form.label1.Text = prompt;
+            form.textBox.Text = defaultText;
+            if (form.ShowDialog(owner) == DialogResult.OK)
+            {
+                return form.textBox.Text;
+            }
+            return nullVal;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

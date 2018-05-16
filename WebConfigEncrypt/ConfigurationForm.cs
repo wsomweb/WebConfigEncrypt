@@ -33,6 +33,7 @@ namespace edu.cwru.weatherhead.WebConfigEncrypt
         public ConfigurationForm()
         {
             InitializeComponent();
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             BindValues(txtWebroots, Settings.Webroots);
             BindValues(txtExcludes, Settings.ExcludeDirectories);
             BindValues(txtSections, Settings.IncludeSections);
@@ -101,6 +102,11 @@ namespace edu.cwru.weatherhead.WebConfigEncrypt
         private string GetDelimitedString(TextBox textBox)
         {
             return textBox.Text.Replace(Environment.NewLine, ",");
+        }
+
+        private void btnKeys_Click(object sender, EventArgs e)
+        {
+            (new KeyContainerForm()).ShowDialog(this);
         }
     }
 }

@@ -25,7 +25,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -92,48 +91,34 @@ namespace edu.cwru.weatherhead.WebConfigEncrypt
 
         #region ToggleEncryption
 
-        public bool ToggleEncryption(IWin32Window window, out string output)
+        public string ToggleEncryption(IWin32Window window)
         {
-            output = "";
+            string output = "";
             string directory = ConfigFilePath.Substring(0, ConfigFilePath.Length - 11);
             if (IsEncrypted)
             {
                 // decrypt
-                if (RunTask(String.Format("-pdf \"{0}\" \"{1}\"", SectionName, directory), out output))
+                output = Program.RunTask("-pdf \"{0}\" \"{1}\"", SectionName, directory);
+                if (Program.IsSuccess(output))
                 {
                     IsEncrypted = false;
-                    return true;
                 }
             }
             else
             {
                 // encrypt
                 string keyProvider = GetKeyProvider(window);
-                if(!String.IsNullOrEmpty(keyProvider) && RunTask(String.Format("-pef \"{0}\" \"{1}\" -prov \"{2}\"", SectionName, directory, keyProvider), out output))
+                if (!String.IsNullOrEmpty(keyProvider))
                 {
-                    IsEncrypted = true;
-                    return true;
+                    output = Program.RunTask("-pef \"{0}\" \"{1}\" -prov \"{2}\"", SectionName, directory, keyProvider);
+                    if (Program.IsSuccess(output))
+                    {
+                        IsEncrypted = true;
+                    }
                 }
             }
-            return false;
-        }
-
-        bool RunTask(string arguments, out string output)
-        {
-            Process process = new Process();
-            process.StartInfo.FileName = @"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_regiis";
-            process.StartInfo.Arguments = arguments;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.Start();
-            // Read the output
-            output = process.StandardOutput.ReadToEnd();
-            Console.WriteLine(output);
-            process.WaitForExit();
-            // look for success string
-            return output.Contains("Succeeded!");
+            Program.ShowMessageBox(window, output);
+            return output;
         }
 
         string GetKeyProvider(IWin32Window window)

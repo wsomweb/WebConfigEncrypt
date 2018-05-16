@@ -23,6 +23,8 @@
 // SOFTWARE.
 
 using System;
+using System.Configuration;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace edu.cwru.weatherhead.WebConfigEncrypt
@@ -36,6 +38,42 @@ namespace edu.cwru.weatherhead.WebConfigEncrypt
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new WebConfigEncryptForm());
+        }
+
+        internal static string RunTask(string argumentsFormatString, params object[] args)
+        {
+            return RunTask(String.Format(argumentsFormatString, args));
+        }
+
+        internal static string RunTask(string arguments)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = ConfigurationManager.AppSettings["AspNetRegIisPath"] ?? @"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_regiis";
+            process.StartInfo.Arguments = arguments;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+            // Read the output
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+            return output;
+        }
+
+        internal static bool IsSuccess(string output)
+        {
+            return !String.IsNullOrEmpty(output) && output.Contains("Succeeded!");
+        }
+
+        internal static DialogResult ShowMessageBox(IWin32Window owner, string output)
+        {
+            if(IsSuccess(output))
+                return MessageBox.Show(owner, output, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else if (!String.IsNullOrEmpty(output))
+                return MessageBox.Show(owner, output, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+                return MessageBox.Show(owner, "No error message available.", "Unknown Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
