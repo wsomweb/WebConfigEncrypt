@@ -28,17 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurationForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtWebroots = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnLoad = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtExcludes = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtSections = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnLoad = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnKeys = new System.Windows.Forms.Button();
@@ -69,7 +68,7 @@
             this.txtWebroots.Multiline = true;
             this.txtWebroots.Name = "txtWebroots";
             this.txtWebroots.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtWebroots.Size = new System.Drawing.Size(313, 469);
+            this.txtWebroots.Size = new System.Drawing.Size(313, 501);
             this.txtWebroots.TabIndex = 1;
             // 
             // label1
@@ -82,6 +81,18 @@
             this.label1.Size = new System.Drawing.Size(307, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "These directories and their children will be searched recursively.";
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoad.Location = new System.Drawing.Point(6, 513);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(313, 23);
+            this.btnLoad.TabIndex = 3;
+            this.btnLoad.Text = "&Load from applicationHost.config";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // groupBox2
             // 
@@ -151,18 +162,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "These sections will be checked for encryption.";
             // 
-            // btnLoad
-            // 
-            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoad.Location = new System.Drawing.Point(6, 513);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(313, 23);
-            this.btnLoad.TabIndex = 3;
-            this.btnLoad.Text = "&Load from applicationHost.config";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -208,6 +207,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ConfigurationForm";
+            this.Text = "Configuration";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
